@@ -1695,6 +1695,8 @@ class MLaunchTool(BaseCmdLineTool):
                 name = p.name()
             except psutil.NoSuchProcess:
                 continue
+            except psutil.ZombieProcess:
+                continue
 
             # skip all but mongod / mongos
             if os.name == 'nt':
