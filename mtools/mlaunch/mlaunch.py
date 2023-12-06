@@ -1863,10 +1863,12 @@ class MLaunchTool(BaseCmdLineTool):
         process_dict = {}
 
         for p in psutil.process_iter():
-            # deal with zombie process errors in OSX
+            # deal with zombie process errors in OSX and ubi8
             try:
                 name = p.name()
             except psutil.NoSuchProcess:
+                continue
+            except psutil.ZombieProcess::
                 continue
 
             # skip all but mongod / mongos
