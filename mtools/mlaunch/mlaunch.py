@@ -1715,6 +1715,8 @@ class MLaunchTool(BaseCmdLineTool):
                     startup_port = startup[startup.index('--port') + 1]
                 except ValueError:
                     continue
+                except psutil.ZombieProcess:
+                    continue
 
                 if str(p_port) == str(startup_port):
                     port = int(possible_port)
